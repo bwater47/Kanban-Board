@@ -17,7 +17,9 @@ function generateTaskId() {
 // Todo: create a function to create a task card
 function createTaskCard(task) {
   // Create a task card using an event listener on add task, a form to populate with Task Title, Task Due Date, Task Description.
-  task.addEventListener("btn", {modal});
+  task.addEventListener("#formModal", {show.bs.modal});
+//   const myModalEl = document.getElementById('#formModal')
+// myModalEl.addEventListener('show.bs.modal', function (task) {
   // #formModal for datepicker
   // modal html line 25 for title, and description.
   $(function () {
