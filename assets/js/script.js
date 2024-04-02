@@ -1,17 +1,25 @@
 // Retrieve tasks and nextId from localStorage
 let taskList = JSON.parse(localStorage.getItem("tasks"));
 let nextId = JSON.parse(localStorage.getItem("nextId"));
+const openButton = document.querySelector("#formModal");
 const submitButton = document.querySelector("#submitButton");
 const taskTitleInput = document.querySelector("#taskTitle");
 const taskDueDateInput = document.querySelector("#taskDueDate");
 const taskDescriptionInput = document.querySelector("#taskDescription");
 
+const tasks = {
+  taskTitle: taskTitleInput.value,
+  taskDueDate: taskDueDateInput.value,
+  taskDescription: taskDescriptionInput.value,
+};
+
 // Todo: create a function to generate a unique task id
 function generateTaskId() {
-  if (!nextId) {
-    nextId = [];
+  
+  for (let i = 0; i < tasks.length; i++) {
+    return [i];
+    
   }
-  return nextId++;
   //   const date = "2024-04-01";
   //   const unixTimestamp = dayjs(date).unix();
   //   const timestamp = new Date().getTime(); // Current timestamp
@@ -30,28 +38,20 @@ function createTaskCard(task) {
       changeYear: true,
     });
   });
-  // Create a task card using an event listener on add task, a form to populate with Task Title, Task Due Date, Task Description.
-  // task.addEventListener("#formModal", {modal});
-  //   const myModalEl = document.getElementById('#formModal')
-  // myModalEl.addEventListener('show.bs.modal', function (task) {
-  // #formModal for datepicker
   // Capture variables to use in the script from form, and render it to the screen in the #to-do.
-  // modal html line 25 for title, and description.
   // Use day.js here to locally store the unix date.
 }
 
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
-  const tasks = {
-    taskTitle: taskTitleInput.value,
-    taskDueDate: taskDueDateInput.value,
-    taskDescription: taskDescriptionInput.value,
-  };
+  // Create a task card using an event listener on add task, 
+  // a form to populate with Task Title, Task Due Date, Task Description.
 }
 // Render three columns into the dom, iterate over taskList to place the tasks created in the correct columns.
 
 // Todo: create a function to handle adding a new task
 function handleAddTask(event) {}
+// event.preventDefault();
 // Add function to add taskCard when we click submit. Push to an array so it persists.
 
 // Todo: create a function to handle deleting a task
