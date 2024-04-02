@@ -27,6 +27,7 @@ function createTaskCard(task) {
     taskDueDate: taskDueDateInput.value,
     taskDescription: taskDescriptionInput.value,
   };
+  console.log(tasks);
   $(function () {
     $("#taskDueDate").datepicker({
       changeMonth: true,
@@ -46,7 +47,6 @@ function renderTaskList() {
 
 // Todo: create a function to handle adding a new task
 function handleAddTask(event) {}
-event.preventDefault();
 // Add function to add taskCard when we click submit. Push to an array so it persists.
 
 // Todo: create a function to handle deleting a task
