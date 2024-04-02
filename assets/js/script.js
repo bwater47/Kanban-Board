@@ -2,24 +2,14 @@
 let taskList = JSON.parse(localStorage.getItem("tasks"));
 let nextId = JSON.parse(localStorage.getItem("nextId"));
 const openButton = document.querySelector("#formModal");
-const submitButton = document.querySelector("#submitButton");
+const submitButton = document.querySelector(".modal-body");
 const taskTitleInput = document.querySelector("#taskTitle");
 const taskDueDateInput = document.querySelector("#taskDueDate");
 const taskDescriptionInput = document.querySelector("#taskDescription");
 
-const tasks = {
-  taskTitle: taskTitleInput.value,
-  taskDueDate: taskDueDateInput.value,
-  taskDescription: taskDescriptionInput.value,
-};
-
 // Todo: create a function to generate a unique task id
 function generateTaskId() {
-  
-  for (let i = 0; i < tasks.length; i++) {
-    return [i];
-    
-  }
+  return Date.now();
   //   const date = "2024-04-01";
   //   const unixTimestamp = dayjs(date).unix();
   //   const timestamp = new Date().getTime(); // Current timestamp
@@ -32,6 +22,11 @@ function generateTaskId() {
 
 // Todo: create a function to create a task card
 function createTaskCard(task) {
+  const tasks = {
+    taskTitle: taskTitleInput.value,
+    taskDueDate: taskDueDateInput.value,
+    taskDescription: taskDescriptionInput.value,
+  };
   $(function () {
     $("#taskDueDate").datepicker({
       changeMonth: true,
@@ -51,7 +46,7 @@ function renderTaskList() {
 
 // Todo: create a function to handle adding a new task
 function handleAddTask(event) {}
-// event.preventDefault();
+event.preventDefault();
 // Add function to add taskCard when we click submit. Push to an array so it persists.
 
 // Todo: create a function to handle deleting a task
