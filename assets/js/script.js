@@ -50,6 +50,9 @@ function renderTaskList() {
     $(`#${task.status}-cards`).append(card);
     //  $(`#todo-cards`).append(card);
   });
+  // add event listener to delete button
+  deleteTaskButton = document.querySelector(".delete-task");
+  deleteTaskButton.addEventListener("click", handleDeleteTask);
   // make cards draggable
   $(".draggable").draggable({
     opacity: 0.7,
@@ -97,8 +100,6 @@ function handleDeleteTask(event) {
   taskList = taskList.filter((task) => task.id !== parseInt(taskId));
   localStorage.setItem("tasks", JSON.stringify(taskList));
   renderTaskList();
-  deleteTaskButton = document.querySelector(".delete-task");
-  deleteTaskButton.addEventListener("click", handleDeleteTask);
 }
 
 // const taskId = $(this).attr('data-task-id');
@@ -121,7 +122,6 @@ function handleDrop(event, ui) {
   });
   localStorage.setItem("tasks", JSON.stringify(taskList));
   renderTaskList();
-  handleDeleteTask();
 }
 
 // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
