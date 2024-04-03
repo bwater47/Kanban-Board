@@ -24,6 +24,8 @@ function createTaskCard(task) {
     colorClass = "bg-danger";
   } else if (daysRemaining < 3) {
     colorClass = "bg-warning";
+  } else if (document.getElementById('taskDueDate').value === document.getElementById('done-cards').value) {
+    colorClass = "bg-light";
   }
   // Create the card
   let card = `
