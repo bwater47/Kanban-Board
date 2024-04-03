@@ -14,22 +14,40 @@ function generateTaskId() {
 
 // Todo: create a function to create a task card
 function createTaskCard(task) {
-  $(function () {
-    $("#taskDueDate").datepicker({
-      changeMonth: true,
-      changeYear: true,
-    });
-  });
+  let today = new Date();
+  let dueDate = new Date(task.taskDueDate);
+  let daysRemaining = Math.floor((dueDate - today) / (1000 * 60 * 60 * 24));
+  let colorClass = "";
+  if (daysRemaining < 0) {
+    colorClass = "bg-danger";
+  } else if (daysRemaining < 3) {
+    colorClass = "bg-warning";
+  };
+  let card = `
+    <div class ="card mb-3 ${colorClass}" id="${task.id}">
+    <div class="card-body">
+    <h5 class="card-title">${task.taskTitle}</h5>
+    <p class ="card-text"><strong>Due Date:</strong> ${task.taskDueDate}</p>
+    <p class="card-text">${task.taskDescription}</p>
+    <button class="btn btn-danger btn-sm delete-task" data-task-id=${task.id}">Delete</button>
+    </div>
+    </div>
+    `;
+    return card;
 }
 
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
-  const tasks = {
-    taskTitle: taskTitleInput.value,
-    taskDueDate: taskDueDateInput.value,
-    taskDescription: taskDescriptionInput.value,
-  };
-  console.log(tasks);
+  $("#todo-cards, #in-progress-cards, #done-cards").empty();
+
+  taskList.forEach(task) => {
+    let card = createTaskCard(task);
+  // const tasks = {
+  //   taskTitle: taskTitleInput.value,
+  //   taskDueDate: taskDueDateInput.value,
+  //   taskDescription: taskDescriptionInput.value,
+  // };
+  // console.log(tasks);
 }
 
 // Todo: create a function to handle adding a new task
@@ -46,4 +64,10 @@ $(document).ready(function () {
   $(submitButton).on("click", handleAddTask);
 });
 
+$(function () {
+  $("#taskDueDate").datepicker({
+    changeMonth: true,
+    changeYear: true,
+  });
+});
 // Take a task and create a card from the task.
