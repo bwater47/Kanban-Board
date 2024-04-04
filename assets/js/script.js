@@ -32,12 +32,9 @@ function createTaskCard(task) {
   } else if (daysRemaining < 3) {
     colorClass = "bg-warning";
     // If taskDueDate value is in the done-cards, set colorClass to "bg-light"
-  } else if (
-    document.getElementById("taskDueDate").value ===
-    document.getElementById("done-cards").value
-  ) {
-    colorClass = "bg-light";
-  }
+  } else if (project.status === "done") {
+    card.addClass("bg-light");
+  };
   // Create the card
   const card = `
     <div class ="card draggable mb-3 ${colorClass}" id="${task.id}">
@@ -69,7 +66,7 @@ function renderTaskList() {
   deleteTaskButton = document.querySelector(".delete-task");
   deleteTaskButton.addEventListener("click", handleDeleteTask);
   // Make the cards draggable
-  $(".card").draggable({
+  $(".draggable").draggable({
     opacity: 0.7,
     zIndex: 100,
     // Create a helper function to clone the card when dragging
