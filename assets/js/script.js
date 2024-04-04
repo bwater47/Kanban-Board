@@ -32,8 +32,8 @@ function createTaskCard(task) {
   } else if (daysRemaining < 3) {
     colorClass = "bg-warning";
     // If taskDueDate value is in the done-cards, set colorClass to "bg-light"
-  } else if (project.status === "done") {
-    card.addClass("bg-light");
+  } else if (task.status === "done-cards") {
+    colorClass = "bg-light";
   };
   // Create the card
   const card = `
@@ -121,11 +121,6 @@ function handleDeleteTask(event) {
   renderTaskList();
 }
 
-// projects.forEach((project) => {
-//   if (project.id === projectId) {
-//     projects.splice(projects.indexOf(project), 1);
-//   }
-// });
 // Todo: create a function to handle dropping a task into a new status lane
 function handleDrop(event, ui) {
   // Variable for task id selected to move task by id
