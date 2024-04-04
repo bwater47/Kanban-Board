@@ -116,6 +116,8 @@ function handleDeleteTask(event) {
   const taskId = $(this).attr("data-task-id");
   // Filter the taskList array to remove the task with the selected id
   taskList = taskList.filter((task) => task.id !== parseInt(taskId));
+  // Remove the card from the page
+  $(this).closest(".card").remove();
   // Store the updated taskList array in localStorage
   localStorage.setItem("tasks", JSON.stringify(taskList));
   // Render the updated task list to the page
