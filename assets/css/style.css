@@ -1,16 +1,17 @@
+/* Import Google Fonts */
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
 }
-
+/* Custom Styles */
 .swim-lanes {
   min-height: 60vh;
 }
-
+/* Style for the task card */
 .task-card {
   margin: 0 auto;
 }
-
+/* Style for the task card header */
 .task-card:hover {
   cursor: grab;
 }
