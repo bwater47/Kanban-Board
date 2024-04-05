@@ -32,9 +32,7 @@ function createTaskCard(task) {
   } else if (daysRemaining < 3) {
     colorClass = "bg-warning";
     // If taskDueDate value is in the done-cards, set colorClass to "bg-light"
-  // } else if (task.status === "done-cards") {
-  //   colorClass = "bg-light";
-  };
+  }
   if (task.status === "done") {
     colorClass = "bg-light";
   }
@@ -46,7 +44,7 @@ function createTaskCard(task) {
     <h5 class="card-title">${task.taskTitle}</h5>
     <p class ="card-text"><strong>Due Date:</strong> ${task.taskDueDate}</p>
     <p class="card-text">${task.taskDescription}</p>
-    <button class="btn btn-danger btn-sm delete-task" data-task-id="${task.id}">Delete</button>
+    <button class="btn btn-danger btn-sm delete-task" onclick="handleDeleteTask(this)" data-task-id="${task.id}">Delete</button>
     </div>
     </div>
     `;
@@ -67,13 +65,12 @@ function renderTaskList() {
     $(`#${task.status}-cards`).append(card);
   });
   // Event listener to delete button
-  deleteTaskButton = document.getElementsByClassName(".delete-task");
-  console.log(deleteTaskButton);
+  // deleteTaskButton = document.getElementsByClassName(".delete-task");
   // Change this from query selector to getelementsbyclassname
-  if (deleteTaskButton) {
+  // if (deleteTaskButton) {
     // Iterate over that array and add event listener to each button
     // deleteTaskButton.addEventListener("click", handleDeleteTask);
-  }
+  // }
   // Make the cards draggable
   $(".draggable").draggable({
     opacity: 0.7,
@@ -138,9 +135,8 @@ function handleDrop(event, ui) {
   let newStatus = $(this).attr("id");
   // Update the status of the task with the selected id
   if (newStatus === "to-do") {
-    newStatus = "todo"
-  };
-  console.log(newStatus);
+    newStatus = "todo";
+  }
   taskList = taskList.map((task) => {
     // If the task id is equal to the task id selected
 
