@@ -44,7 +44,7 @@ function createTaskCard(task) {
     <h5 class="card-title">${task.taskTitle}</h5>
     <p class ="card-text"><strong>Due Date:</strong> ${task.taskDueDate}</p>
     <p class="card-text">${task.taskDescription}</p>
-    <button class="btn btn-danger btn-sm delete-task" onclick="handleDeleteTask(this)" data-task-id="${task.id}">Delete</button>
+    <button class="btn btn-danger btn-sm delete-task" data-task-id="${task.id}">Delete</button>
     </div>
     </div>
     `;
@@ -64,14 +64,11 @@ function renderTaskList() {
     const card = createTaskCard(task);
     $(`#${task.status}-cards`).append(card);
   });
-  // Event listener to delete button
-  // deleteTaskButton = document.getElementsByClassName(".delete-task");
-  // Change this from query selector to getelementsbyclassname
-  // if (deleteTaskButton) {
-  // Iterate over that array and add event listener to each button
-  // deleteTaskButton.addEventListener("click", handleDeleteTask);
-  // }
-  // console.log(deleteTaskButton[i]);
+  // If there are tasks in the taskList array
+  if (taskList.length > 0) {
+    // Then apply the event listener to the delete buttons.
+    $(".delete-task").on("click", handleDeleteTask);
+  }
   // Make the cards draggable
   $(".draggable").draggable({
     opacity: 0.7,
