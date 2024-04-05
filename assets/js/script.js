@@ -68,9 +68,10 @@ function renderTaskList() {
   // deleteTaskButton = document.getElementsByClassName(".delete-task");
   // Change this from query selector to getelementsbyclassname
   // if (deleteTaskButton) {
-    // Iterate over that array and add event listener to each button
-    // deleteTaskButton.addEventListener("click", handleDeleteTask);
+  // Iterate over that array and add event listener to each button
+  // deleteTaskButton.addEventListener("click", handleDeleteTask);
   // }
+  // console.log(deleteTaskButton[i]);
   // Make the cards draggable
   $(".draggable").draggable({
     opacity: 0.7,
