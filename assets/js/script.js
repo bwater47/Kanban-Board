@@ -32,9 +32,13 @@ function createTaskCard(task) {
   } else if (daysRemaining < 3) {
     colorClass = "bg-warning";
     // If taskDueDate value is in the done-cards, set colorClass to "bg-light"
-  } else if (task.status === "done-cards") {
-    colorClass = "bg-light";
+  // } else if (task.status === "done-cards") {
+  //   colorClass = "bg-light";
   };
+  if (task.status === "done") {
+    colorClass = "bg-light";
+  }
+
   // Create the card
   const card = `
     <div class ="card draggable mb-3 ${colorClass}" id="${task.id}">
@@ -63,8 +67,13 @@ function renderTaskList() {
     $(`#${task.status}-cards`).append(card);
   });
   // Event listener to delete button
-  deleteTaskButton = document.querySelector(".delete-task");
-  deleteTaskButton.addEventListener("click", handleDeleteTask);
+  deleteTaskButton = document.getElementsByClassName(".delete-task");
+  console.log(deleteTaskButton);
+  // Change this from query selector to getelementsbyclassname
+  if (deleteTaskButton) {
+    // Iterate over that array and add event listener to each button
+    // deleteTaskButton.addEventListener("click", handleDeleteTask);
+  }
   // Make the cards draggable
   $(".draggable").draggable({
     opacity: 0.7,
@@ -126,10 +135,15 @@ function handleDrop(event, ui) {
   // Variable for task id selected to move task by id
   const taskId = ui.helper.attr("id");
   // Variable for new status of task
-  const newStatus = $(this).attr("id");
+  let newStatus = $(this).attr("id");
   // Update the status of the task with the selected id
+  if (newStatus === "to-do") {
+    newStatus = "todo"
+  };
+  console.log(newStatus);
   taskList = taskList.map((task) => {
     // If the task id is equal to the task id selected
+
     if (task.id === parseInt(taskId)) {
       // Set the task status to the new status
       task.status = newStatus;
@@ -146,6 +160,8 @@ function handleDrop(event, ui) {
 // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 // Take a task and create a card from the task.
 $(document).ready(function () {
+  // Render the task list to the page
+  renderTaskList();
   // When the submit button is clicked, handle adding a new task
   $(submitButton).on("click", handleAddTask);
   // Makes the lanes droppable for the cards
